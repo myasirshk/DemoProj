@@ -22,5 +22,5 @@ public class EmpController : Controller
                     employeeList.Add(employee);
                 }
             }
-            return View(employeeList);
+            return View(employeelist);
         }
