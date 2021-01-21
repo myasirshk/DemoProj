@@ -1,0 +1,26 @@
+public class EmpController : Controller
+    {
+        // GET: Emp
+        public ActionResult Index()
+        {
+            List<EmpData> employeeList = new List<EmpData>();
+            string CS = ConfigurationManager.ConnectionStrings["mySqlCon"].ConnectionString;
+            using (MySqlConnection con = new MySqlConnection(CS))
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM emp", con);
+                cmd.CommandType = CommandType.Text;
+                con.Open();
+
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var employee = new EmpData();
+
+                    employee.EmployeeId = Convert.ToInt32(rdr["Id"]);
+                    employee.Name = rdr["Name"].ToString();
+                    employee.Age = Convert.ToInt32(rdr["Age"]);
+                    employeeList.Add(employee);
+                }
+            }
+            return View(employeeList);
+        }
