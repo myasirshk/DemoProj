@@ -14,6 +14,7 @@ public class EmpController : Controller
                 MySqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
+                    var emp;
                     var employee = new EmpData();
 
                     employee.EmployeeId = Convert.ToInt32(rdr["Id"]);
