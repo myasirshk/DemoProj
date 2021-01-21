@@ -16,6 +16,7 @@ public class EmpController : Controller
                 {
                     var emp;
                     var emp2;
+                    var emp3;
                     var employee = new EmpData();
 
                     employee.EmployeeId = Convert.ToInt32(rdr["Id"]);
